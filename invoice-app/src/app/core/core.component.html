@@ -1,2 +1,11 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<div id="global_header">
+    <app-header></app-header>
+</div>
+<div id="layout_core_left_container">
+    <app-navdrawer></app-navdrawer>
+</div>
+
+<div id="layout_core_right_container">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+</div>

@@ -1,0 +1,28 @@
+<mat-drawer-container class="navigation-container" autosize>
+	<div class="navigation-sidenav-content">
+		<button type="button" mat-button (click)="drawer.toggle()">
+			<mat-icon>list</mat-icon>
+		</button>
+	</div>
+  <mat-drawer #drawer class="navigation-sidenav" mode="side">
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<a [routerLink]="['/invoice/create']">Create Invoice</a>
+		</mat-toolbar-row>
+	
+		<mat-toolbar-row>
+			<span>Second Line</span>
+			<span class="example-spacer"></span>
+			<mat-icon class="example-icon">verified_user</mat-icon>
+		</mat-toolbar-row>
+	
+		<mat-toolbar-row>
+			<span>Third Line</span>
+			<span class="example-spacer"></span>
+			<mat-icon class="example-icon">favorite</mat-icon>
+			<mat-icon class="example-icon">delete</mat-icon>
+		</mat-toolbar-row>
+	</mat-toolbar>
+  </mat-drawer>
+
+</mat-drawer-container>

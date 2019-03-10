@@ -1,0 +1,6 @@
+#layout_core_left_container, #layout_core_right_container {
+    display: inline-block;
+}
+#layout_core_left_container {
+    vertical-align: top;
+}

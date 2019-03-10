@@ -1,1 +1,13 @@
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+.login-card {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 18px;
+    padding: 25px;
+}
+.invoice-app-full-width {
+    width: 100%;
+    font-size: 18px;
+}
+.mat-card-header-text {
+    margin: 0 !important;
+}

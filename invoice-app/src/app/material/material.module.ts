@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule, MatFormFieldModule, MatSelectModule, MatSidenavModule, MatCardModule, MatIconModule, MatTableModule, MatCheckboxModule, MatButtonModule, MatProgressSpinnerModule, MatToolbarModule } from '@angular/material';
+import { MatInputModule, MatFormFieldModule, MatSelectModule, MatSidenavModule, MatCardModule, MatIconModule, MatTableModule, MatCheckboxModule, MatButtonModule, MatProgressSpinnerModule, MatToolbarModule, MatListModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { CdkTableModule } from '@angular/cdk/table';
 
 @NgModule({
   declarations: [],
@@ -18,7 +19,10 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     FormsModule,
     MatProgressSpinnerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatListModule,
+    MatSelectModule,
+    CdkTableModule,
   ],
   exports: [
     CommonModule,
@@ -33,7 +37,10 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     FormsModule,
     MatProgressSpinnerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatListModule,
+    MatSelectModule,
+    CdkTableModule
   ]
 })
 export class MaterialModule { }

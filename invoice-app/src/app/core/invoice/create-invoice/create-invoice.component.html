@@ -1,3 +1,119 @@
-<p>
-  create-invoice works!
-</p>
+<div id="invoice_create_container">
+  <div class="first_upper_left_cotainer">
+    <h3>Create Invoice</h3>
+  </div>
+  <div class="first_upper_right_container">
+    <button>Preview</button>
+    <div class="right_container_section2">
+      <mat-form-field>
+        <mat-select>Save</mat-select>
+      </mat-form-field>
+        <button mat-raised-button>Save as draft</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="second_upper_left_container">
+    <button>Created By</button>
+    <label for="creator_name">{{loggedinUserName}}</label>
+
+    <mat-form-field>
+      <input matInput placeholder="Name (Bill To):">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Address">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Contact Number">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email">
+    </mat-form-field>
+  </div>
+
+  <div class="second_upper_right_container">
+    <mat-form-field>
+      <input matInput placeholder="Invoice Number">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Invoice Date">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select>Select Currency</mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select>
+        State
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="full_width_container">
+    <table mat-table [dataSource]="products" class="mat-elevation-z8">
+      <ng-container *ngFor="let product of products" matColumnDef="Description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="product">{{product.Description}}</td>
+      </ng-container>
+
+      <ng-container *ngFor="let product of products" matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="product">{{product.Quantity}}</td>
+      </ng-container>
+
+      <ng-container *ngFor="let product of products" matColumnDef="Price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="product">{{product.Price}}</td>
+      </ng-container>
+
+      <ng-container *ngFor="let product of products" matColumnDef="Amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="product">{{product.Amount}}</td>
+      </ng-container>
+    </table>
+  </div>
+
+  <div class="full_width_container">
+    <span>Click here to add more products</span>
+  </div>
+  <hr>
+  
+  <div class="full_width_container layout_right">
+    <table mat-table>
+      <tr>
+        <td>Subtotal</td>
+        <td>Discount</td>
+        <td>CGST @9%</td>
+        <td>SGST @9%</td>
+        <td>Total</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="third_lower_left_container">
+    <label for="PAN" mat-label>PAN Number</label>
+    <span>{{pan_number}}</span>
+    <label for="GST" mat-label>GST Number</label>
+    <span>{{gst_number}}</span>
+    <label for="LUT" mat-label>LUT Number</label>
+    <span>{{lut_number}}</span>
+  </div>
+
+  <div class="third_lower_right_container">
+    <label for="points" mat-lable>Points to Remember</label>
+    <textarea name="points" id="points_to_remember" cols="30" rows="5">
+
+    </textarea>
+  </div>
+
+  <div class="form-buttons">
+    <mat-form-field>
+      <button mat-button>Preview</button>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select>Save</mat-select>
+    </mat-form-field>
+  </div>
+</div>

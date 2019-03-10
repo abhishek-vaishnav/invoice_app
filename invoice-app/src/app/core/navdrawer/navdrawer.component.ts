@@ -14,4 +14,8 @@ export class NavdrawerComponent implements OnInit {
   ngOnInit() {
   }
 
+  log(item:any) : void {
+    console.log(item);
+  }
+
 }

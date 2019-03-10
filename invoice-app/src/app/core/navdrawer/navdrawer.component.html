@@ -1,28 +1,28 @@
-<mat-drawer-container class="navigation-container" autosize>
-	<div class="navigation-sidenav-content">
-		<button type="button" mat-button (click)="drawer.toggle()">
-			<mat-icon>list</mat-icon>
+<mat-toolbar color="warn">
+	<mat-toolbar-row>
+		<button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary">
+			<mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
 		</button>
-	</div>
-  <mat-drawer #drawer class="navigation-sidenav" mode="side">
-	<mat-toolbar color="primary">
-		<mat-toolbar-row>
-			<a [routerLink]="['/invoice/create']">Create Invoice</a>
-		</mat-toolbar-row>
-	
-		<mat-toolbar-row>
-			<span>Second Line</span>
-			<span class="example-spacer"></span>
-			<mat-icon class="example-icon">verified_user</mat-icon>
-		</mat-toolbar-row>
-	
-		<mat-toolbar-row>
-			<span>Third Line</span>
-			<span class="example-spacer"></span>
-			<mat-icon class="example-icon">favorite</mat-icon>
-			<mat-icon class="example-icon">delete</mat-icon>
-		</mat-toolbar-row>
-	</mat-toolbar>
-  </mat-drawer>
+	</mat-toolbar-row>
+</mat-toolbar>
 
-</mat-drawer-container>
+<mat-sidenav-container class="example-container">
+	<mat-sidenav #drawer mode="side" opened role="navigation">
+		<mat-nav-list>
+			<mat-toolbar>Invoice</mat-toolbar>
+			<mat-toolbar-row>
+				<a [routerLink]="['/invoice/create']">Create Invoice</a>
+			</mat-toolbar-row>
+			<mat-toolbar-row>
+				<a [routerLink]="['/invoice/manage']">Manage Invoice</a>
+			</mat-toolbar-row>
+			<mat-toolbar>Creators</mat-toolbar>
+			<mat-toolbar-row>
+				<a [routerLink]="['/user/create']">Add a Creator</a>
+			</mat-toolbar-row>
+			<mat-toolbar-row>
+				<a [routerLink]="['/user/manage']">Manage Creators</a>
+			</mat-toolbar-row>
+		</mat-nav-list>
+	</mat-sidenav>
+</mat-sidenav-container>

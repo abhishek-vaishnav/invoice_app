@@ -13,3 +13,10 @@ export class CreateInvoiceComponent implements OnInit {
   }
 
 }
+
+const products = [{
+  'Description' : '',
+  'Quantity' : '',
+  'Price' : '',
+  'Amount' : ''
+}];

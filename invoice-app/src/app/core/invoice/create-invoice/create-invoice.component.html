@@ -1,8 +1,8 @@
-<div id="invoice_create_container">
+<form (submit)="submitForm(invoiceCreateForm)" #invoiceCreateForm='ngForm' id="invoice_create_form">
   <div class="first_upper_left_cotainer">
     <h3>Create Invoice</h3>
   </div>
-  <div class="first_upper_right_container">
+  <!-- <div class="first_upper_right_container">
     <button>Preview</button>
     <div class="right_container_section2">
       <mat-form-field>
@@ -10,114 +10,169 @@
       </mat-form-field>
         <button mat-raised-button>Save as draft</button>
     </div>
-  </div>
+  </div> -->
 
   <hr>
 
-  <div class="second_upper_left_container">
-    <button>Created By</button>
+  <div>
+    <span>Created By</span>
     <label for="creator_name">{{loggedinUserName}}</label>
+  </div>
 
-    <mat-form-field>
-      <input matInput placeholder="Name (Bill To):">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Address">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Contact Number">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Email">
-    </mat-form-field>
+  <div class="second_upper_left_container">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Name (Bill To):">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Address">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Contact Number">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Email">
+      </mat-form-field>
+    </div>
+      
   </div>
 
   <div class="second_upper_right_container">
-    <mat-form-field>
-      <input matInput placeholder="Invoice Number">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Invoice Date">
-    </mat-form-field>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Invoice Number">
+      </mat-form-field>
+    </div>
 
-    <mat-form-field>
-      <mat-select>Select Currency</mat-select>
-    </mat-form-field>
+    <div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field>
-      <mat-select>
-        State
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-select name='currency' ngModel #currency='ngModel' placeholder="Select Currency">
+          <mat-option value="$">USD</mat-option>
+          <mat-option value="Rs">INR</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field *ngIf="currency.value == 'Rs'">
+      <mat-select name='state' ngModel #state='ngModel' placeholder="State">
+        <mat-option value="Haryana">Haryana</mat-option>
+        <mat-option value="Out of Haryana">Out of Haryana</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
   <div class="full_width_container">
-    <mat-table [dataSource]="products" class="mat-elevation-z8">
-      <ng-container *ngFor="let product of products" matColumnDef="Description">
-        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-        <mat-cell *matCellDef="let product">{{product.Description}}</mat-cell>
-      </ng-container>
-
-      <ng-container *ngFor="let product of products" matColumnDef="Quantity">
-        <div mat-header-cell *matHeaderCellDef> Quantity </div>
-        <div mat-cell *matCellDef="let product">{{product.Quantity}}</div>
-      </ng-container>
-
-      <ng-container *ngFor="let product of products" matColumnDef="Price">
-        <div mat-header-cell *matHeaderCellDef> Price </div>
-        <div mat-cell *matCellDef="let product">{{product.Price}}</div>
-      </ng-container>
-
-      <ng-container *ngFor="let product of products" matColumnDef="Amount">
-        <div mat-header-cell *matHeaderCellDef> Amount </div>
-        <div mat-cell *matCellDef="let product">{{product.Amount}}</div>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    </mat-table>
+    <table class="create_products_table">
+      <thead>
+        <tr>
+          <td>S/No.</td>
+          <td>Description</td>
+          <td>Quantity</td>
+          <td>Price</td>
+          <td>Amount</td>
+          <td></td>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr *ngFor="let product of products; let i = index">
+          <td>{{i+1}}</td>
+          <td>
+            <input type="text" matInput placeholder="Product Name" [(ngModel)]="product.name" name="name" class="form-control">
+          </td>
+          <td>
+              <input type="text" matInput min="0" type="number" placeholder="1" [(ngModel)]="product.quantity" name="quantity" class="form-control">
+          </td>
+          <td>
+              <input type="text" matInput min="0" type="number" placeholder="0.00" [(ngModel)]="product.price" name="price" class="form-control">
+          </td>
+          <td>
+              {{product.quantity * product.price}} {{currency.value}}
+          </td>
+          <td *ngIf="products.length > 1 || product.name || product.quantity || product.price">
+              <button class="clickable" (click)="remove($index)"><i>delete...</i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="full_width_container">
-    <span>Click here to add more products</span>
+    <span class="clickable" (click)="addNewRow(); log(products)">+ Click here to add more products</span>
   </div>
   <hr>
   
   <div class="full_width_container layout_right">
-    <table mat-table>
+    <table>
       <tr>
         <td>Subtotal</td>
+        <td>{{getTotal()}}</td>
+      </tr>
+      <tr>
         <td>Discount</td>
+        <td>0 {{currency.value}}</td>
+      </tr>
+      <tr>
         <td>CGST @9%</td>
+        <td>0 {{currency.value}}</td>
+      </tr>
+      <tr>
         <td>SGST @9%</td>
+        <td>0 {{currency.value}}</td>
+      </tr>
+        
+      <tr>
         <td>Total</td>
+        <td>{{getTotal()}}</td>
       </tr>
     </table>
   </div>
 
   <div class="third_lower_left_container">
-    <label for="PAN" mat-label>PAN Number</label>
-    <span>{{pan_number}}</span>
-    <label for="GST" mat-label>GST Number</label>
-    <span>{{gst_number}}</span>
-    <label for="LUT" mat-label>LUT Number</label>
-    <span>{{lut_number}}</span>
+      <mat-list class="example-full-width">
+        <mat-list-item class="example-full-width">PAN Number: {{pan_number}}</mat-list-item>
+        <mat-list-item class="example-full-width">GST Number: {{gst_number}}</mat-list-item>
+        <mat-list-item class="example-full-width">LUT Number: {{lut_number}}</mat-list-item>
+      </mat-list>
   </div>
 
   <div class="third_lower_right_container">
-    <label for="points" mat-lable>Points to Remember</label>
-    <textarea name="points" id="points_to_remember" cols="30" rows="5">
-
-    </textarea>
+    <mat-form-field>
+      <!-- <label for="points" mat-lable>Points to Remember</label> -->
+      <textarea matInput name="points" id="points_to_remember" cols="30" rows="5" placeholder="Points to Remember"></textarea>
+    </mat-form-field>
   </div>
 
+  
   <div class="form-buttons">
-    <mat-form-field>
-      <button mat-button>Preview</button>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-select>Save</mat-select>
+    
+    <button mat-raised-button (click)="showFormPreview()">Preview</button>
+
+    <mat-form-field class="save_form">
+      <mat-select name='status' ngModel #status='ngModel' placeholder="Save Options">
+        <mat-option value="save">Save</mat-option>
+        <mat-option value="draft">Save as Draft</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
-</div>
+
+  <button mat-raised-button type="submit" color="accent"> Create Invoice </button>
+  
+</form>

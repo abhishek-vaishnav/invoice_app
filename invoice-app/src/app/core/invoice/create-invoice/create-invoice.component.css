@@ -1,0 +1,19 @@
+.clickable {
+    cursor: pointer;
+}
+/* .form-buttons {
+    float: left;
+} */
+.second_upper_left_container, .second_upper_right_container {
+    display: inline-block;
+    vertical-align: top;
+}
+.second_upper_left_container {
+    width: 50%;
+}
+.second_upper_right_container {
+    float: right;
+}
+.full_width_container {
+    padding: 10px;
+}

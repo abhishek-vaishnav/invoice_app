@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule, MatFormFieldModule, MatSelectModule, MatSidenavModule, MatCardModule, MatIconModule, MatTableModule, MatCheckboxModule, MatButtonModule, MatProgressSpinnerModule, MatToolbarModule, MatListModule } from '@angular/material';
+import { MatInputModule, MatFormFieldModule, MatSelectModule, MatSidenavModule, MatCardModule, MatIconModule, MatTableModule, MatCheckboxModule, MatButtonModule, MatProgressSpinnerModule, MatToolbarModule, MatListModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { CdkTableModule } from '@angular/cdk/table';
 
@@ -23,6 +23,8 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatListModule,
     MatSelectModule,
     CdkTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     CommonModule,
@@ -40,7 +42,9 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatToolbarModule,
     MatListModule,
     MatSelectModule,
-    CdkTableModule
+    CdkTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class MaterialModule { }

@@ -14,6 +14,8 @@ export class CreateInvoiceComponent implements OnInit {
 
 }
 
+const displayedColumns = ['Description', 'Quantity', 'Price', 'Quantity'];
+
 const products = [{
   'Description' : '',
   'Quantity' : '',

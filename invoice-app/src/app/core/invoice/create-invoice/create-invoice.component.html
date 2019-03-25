@@ -52,27 +52,31 @@
   </div>
 
   <div class="full_width_container">
-    <table mat-table [dataSource]="products" class="mat-elevation-z8">
+    <mat-table [dataSource]="products" class="mat-elevation-z8">
       <ng-container *ngFor="let product of products" matColumnDef="Description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="product">{{product.Description}}</td>
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let product">{{product.Description}}</mat-cell>
       </ng-container>
 
       <ng-container *ngFor="let product of products" matColumnDef="Quantity">
-        <th mat-header-cell *matHeaderCellDef> Quantity </th>
-        <td mat-cell *matCellDef="product">{{product.Quantity}}</td>
+        <div mat-header-cell *matHeaderCellDef> Quantity </div>
+        <div mat-cell *matCellDef="let product">{{product.Quantity}}</div>
       </ng-container>
 
       <ng-container *ngFor="let product of products" matColumnDef="Price">
-        <th mat-header-cell *matHeaderCellDef> Price </th>
-        <td mat-cell *matCellDef="product">{{product.Price}}</td>
+        <div mat-header-cell *matHeaderCellDef> Price </div>
+        <div mat-cell *matCellDef="let product">{{product.Price}}</div>
       </ng-container>
 
       <ng-container *ngFor="let product of products" matColumnDef="Amount">
-        <th mat-header-cell *matHeaderCellDef> Amount </th>
-        <td mat-cell *matCellDef="product">{{product.Amount}}</td>
+        <div mat-header-cell *matHeaderCellDef> Amount </div>
+        <div mat-cell *matCellDef="let product">{{product.Amount}}</div>
       </ng-container>
-    </table>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
   </div>
 
   <div class="full_width_container">
